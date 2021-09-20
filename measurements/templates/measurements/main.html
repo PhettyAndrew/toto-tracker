@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+Child Tracking Site
+{% endblock title %}
+
+{% block content %}
+
+<div class="row">
+  <div class="col-sm-12" style="padding-top: 20px;">
+    {{ map|safe }}
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12" style="font-family: Quicksand;">
+    <h3>You are currently at <b>{{ current_address }}</b></h3>
+    <h3>Your child is currently at <b style="color: #800000;">{{ destination }}</b> a distance of  <b style="color: #800000;">{{ distance }} km</b> from you</h3>
+  </div>
+</div>
+
+
+{% if request.POST and distance is not None %}
+  <script>
+      $(window).on('load', function(){
+          $('#exampleModal').modal('show')
+      })
+  </script>
+{% endif %}
+
+{% endblock content %}
